@@ -12,18 +12,37 @@
 - Environment-specific configuration via `.env` files
 - Dockerized CLI for consistent runtime
 - Terraform-compatible for declarative view deployment
+- Scalable structure for managing Radiant Logic as code
 
 ---
 
-## 🧱 Folder Structure
+## 🔧 Supported Radiant Logic Components for IaC
+
+| Component                        | Managed via Config Files           |
+|----------------------------------|------------------------------------|
+| **Views (Join, Proxy, GIB)**     | `.orx`                             |
+| **Data Sources**                 | `.json` or `.properties`           |
+| **HDAP Stores**                  | `.json`                            |
+| **Persistent Cache Settings**    | `.json`, `.xml`                    |
+| **Global ID Rules**              | `.xml`, `.json`                    |
+| **Namespace Tree Mapping**       | `.json`, `.ldif`                   |
+| **Access Control (ACI)**         | `.aci`, `.json`                    |
+| **Interception Scripts**         | `.js`, `.groovy`                   |
+
+---
+
+## 🗂 Recommended Project Structure
 
 ```plaintext
 radiantlogic-config-iac/
-├── radiant/            # Python deployment logic
-├── views/              # Environment-specific .orx files
-├── env/                # Environment config (.env) files
-├── terraform/          # Terraform module for deployment
-├── scripts/            # CLI entry points and Docker wrapper
-├── main.py             # Main Python runner
-├── Dockerfile          # Dockerized deployment runtime
+├── views/                 # .orx view definitions
+├── data-sources/          # JSON source configs (AD, DB)
+├── hdap/                  # HDAP store setup
+├── cache/                 # View caching rules
+├── global-id/             # GIB correlation & match rules
+├── aci/                   # Access control policies
+├── env/                   # Environment variables
+├── scripts/               # Python CLI automation
+├── terraform/             # Terraform IaC wrapper
+├── Dockerfile             # Runtime container
 └── README.md
